@@ -1,0 +1,30 @@
+1. query for 'patient' table creation
+CREATE TABLE patient (
+_id INT(10) UNSIGNED AUTO_INCREMENT NOT NULL,
+pn VARCHAR(11) DEFAULT NULL,
+first VARCHAR(15) DEFAULT NULL,
+last VARCHAR(25) DEFAULT NULL,
+dob DATE DEFAULT NULL,
+PRIMARY KEY ( _id )
+)
+
+2. query for 'insurance' table creation
+CREATE TABLE insurance (
+_id INT(10) UNSIGNED AUTO_INCREMENT NOT NULL,
+patient_id INT(10) UNSIGNED NOT NULL,
+INDEX (patient_id),
+    FOREIGN KEY (patient_id) 
+        REFERENCES patient(_id)
+        ON DELETE CASCADE,
+iname VARCHAR(40) DEFAULT NULL,
+from_date DATE DEFAULT NULL,
+to_date DATE DEFAULT NULL,
+PRIMARY KEY ( _id )
+)
+
+3. query for populating patient table with 5 records.
+INSERT INTO `raintree_test`.`patient` (`_id`, `pn`, `first`, `last`, `dob`) VALUES (NULL, 'A0000001', 'Samuel', 'Omisakin', '1990-04-06'), (NULL, 'B0000012', 'Oluwatomi', 'Eyinade', '1999-02-19'), (NULL, 'B0000013', 'Olajumoke', 'Williams', '1994-04-02'), (NULL, 'B0000014', 'Sharon', 'Sanni', '1991-01-02'), (NULL, 'B0000015', 'John', 'Doe', '1989-04-03');
+
+
+4. query for populating insurance table with 2 records.
+INSERT INTO `raintree_test`.`insurance` (`_id`, `patient_id`, `iname`, `from_date`, `to_date`) VALUES (NULL, '1', 'Ergo', '2016-01-01', '2016-04-30'), (NULL, '4', 'Swiss Care', '2014-09-01', '2015-08-30');
